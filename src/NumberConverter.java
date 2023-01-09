@@ -42,7 +42,7 @@ public class NumberConverter {
         }
     }
 
-    public int[] convertToBinary() {
+    public String convertToBinary() {
         String convertedBi = "";
         int temp = Integer.parseInt(displayOriginalNumber());
         int i = 0;
@@ -52,6 +52,7 @@ public class NumberConverter {
                 convertedBi = Bi[temp % 2 + 1] + convertedBi;
                 temp = temp / 2;
             }
+        return convertedBi;
         }
         if (base == 2) {
             return null;
