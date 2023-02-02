@@ -23,8 +23,7 @@ class ConverterRunner {
             }
         }
 
-        System.out.print("Enter your numbers that is bigger than 0 and less than the limit of a java integer type: ");
-        System.out.print("Enter your number (must be positive!): ");
+        System.out.print("Enter your numbers that is bigger than 0: ");
         String number;
         boolean temp = true;
         for (int i = 0; i < 1; i++) {
@@ -37,7 +36,7 @@ class ConverterRunner {
             if (temp) {
                 num = number;
             } else {
-                System.out.println("That's not valid!");
+                System.out.println("Try again");
             }
         }
                 NumberConverter nc = new NumberConverter(num, base);
