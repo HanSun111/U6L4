@@ -1,23 +1,26 @@
 public class NumberConverter {
-    int[] digits;
-    int base;
-    char[] numsAndLettersForConv = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '+', '/'};;
+    private int[] digits;
+    private int base;
+    private String originalNum;
+    private String forConversion;
+    //char[] numsAndLettersForConv = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '+', '/'};
 
-    public NumberConverter(int number, int base) {
-        String numberAsString = Integer.toString(number);
-        digits = new int[numberAsString.length()];
-        for (int i = 0; i < numberAsString.length(); i++) {
-            String single = numberAsString.substring(i, i + 1);
-            int d = Integer.parseInt(single);
+    public NumberConverter(String number, int base) {
+        //originalNum = number;
+        forConversion = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/";
+        digits = new int[number.length()];
+        for (int i = 0; i < number.length(); i++) {
+            String converting = String.valueOf(number.charAt(i));
+            int d = forConversion.indexOf(converting);
             digits[i] = d;
         }
         this.base = base;
     }
 
-    public String displayOriginalNumber() {
+    public String display(int[] x) {
         String o = "";
-        for (int i = 0; i < digits.length; i++) {
-            o = o + digits[i];
+        for (int i = 0; i < x.length; i++) {
+            o = o + forConversion.charAt(x[i]);
         }
         o = o + "\n";
         return o;
@@ -27,70 +30,67 @@ public class NumberConverter {
         return digits;
     }
 
-    public
-
-    public int[] convertToDecimal(int convertBase) {
-        int position;
-        String convertedOct = "";
-        int temp = Integer.parseInt(displayOriginalNumber());
-        int[] deci = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        if (base != 10) {
-            if (base == 8) {
-                for (int i = 0; i < digits.length; i++) {
-
-                }
-            }
-        } else {
-            return null;
+    public int[] convertToDecimal() {
+        int[] digitsTemp;
+        int temp = 0;
+        int pow = 0;
+        int x = 0;
+        for (int i = getDigits().length - 1; i >= 0; i--) {
+            temp += getDigits()[i] * Math.pow(base, x);
+            x++;
         }
+        while (Math.pow(10, pow) <= temp) {
+            pow++;
+        }
+        digitsTemp = new int[pow];
+        pow--;
+        for (int i = 0; i < digitsTemp.length; i++) {
+            digitsTemp[i] = (int) (temp / Math.pow(10, pow));
+            temp -= digitsTemp[i] * (Math.pow(10, pow));
+            pow--;
+        }
+        return digitsTemp;
     }
 
     /**
-    public String convertToBinary() {
-        String convertedBi = "";
-        int temp = Integer.parseInt(displayOriginalNumber());
-        int i = 0;
-        int[] Bi = {0, 1};
-        if (base == 10) {
-            while (temp > 0) {
-                convertedBi = Bi[temp % 2 + 1] + convertedBi;
-                temp = temp / 2;
+     * Failed experiment of changing it to return an integer. rip
+     *
+     * public int convertToDecimal() {
+     * int[] referenceToCharList = new int[getDigits().length - 1];
+     * int converted = 0;
+     * int x = 0;
+     * for(int i = getDigits().length - 1; i >= 0; i--){
+     * referenceToCharList[x] = forConversion.indexOf(getDigits()[i]);
+     * converted += referenceToCharList[x] * Math.pow(10, i);
+     * x++;
+     * }
+     * return converted;
+     * }
+     **/
+
+
+    public int[] convertEverything(int convertBase) {
+        int pow = 0;
+        int[] any;
+        int num = Integer.parseInt(display(digits));
+
+        if (base != convertBase) {
+            if (base != 10) {
+                num = Integer.parseInt(display(convertToDecimal()));
             }
-            return convertedBi;
-        }
-        if (base == 2) {
-            return null;
-        }
-    }
-
-    public int[] convertToOctal() {
-        int position;
-        String convertedOct = "";
-        int temp = Integer.parseInt(displayOriginalNumber());
-        int[] oct = {0, 1, 2, 3, 4, 5, 6, 7};
-        if (base != 8) {
-            while (temp > 0) {
-                position = temp % 8;
-                convertedOct = oct[position] + convertedOct;
+            while (Math.pow(convertBase, pow) <= num) {
+                pow++;
             }
-
-        } else {
-            return null;
+            any = new int[pow];
+            pow--;
+            for (int i = 0; i < any.length; i++) {
+                any[i] = num / (int) (Math.pow(convertBase,pow));
+                num %= (int) (Math.pow(convertBase,pow));
+                pow--;
+            }
+            return any;
         }
-    }
-
-    public String[] convertToHexadecimal() {
-        int convertedHexDeci;
-        char[] hexadecimal = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'};
-
-    }
-**/
-    public String convertEverything(int convertBase) {
-        int original = Integer.parseInt(displayOriginalNumber());
-        int toThePowerOf = 0;
-        if(base != 10){
-            original = convertToDecimal(base);
-        }
+        return null;
     }
 }
 
