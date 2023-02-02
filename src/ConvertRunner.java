@@ -23,7 +23,7 @@ class ConverterRunner {
             }
         }
 
-        System.out.print("Enter your *numbers/letters that is bigger than 0 and less than the limit of a java integer type: ");
+        System.out.print("Enter your numbers that is bigger than 0 and less than the limit of a java integer type: ");
         System.out.print("Enter your number (must be positive!): ");
         String number;
         boolean temp = true;
@@ -41,24 +41,21 @@ class ConverterRunner {
             }
         }
                 NumberConverter nc = new NumberConverter(num, base);
-                int[] digits = nc.getDigits();
-                System.out.println("\n\nDigit array: " + Arrays.toString(digits));
-                System.out.println("Number: " + nc.display(nc.getDigits()));
                 if (base != 2) {
-                    System.out.println("Binary: " + nc.display(nc.convertEverything(2)));
+                    System.out.println("Bi: " + nc.display(nc.convertEverything(2)));
                 }
                 if (base != 8) {
-                    System.out.println("Octo: " + nc.display(nc.convertEverything(8)));
+                    System.out.println("Oct: " + nc.display(nc.convertEverything(8)));
                 }
                 if (base != 10) {
-                    System.out.println("Decimal: " + nc.display(nc.convertToDecimal()));
+                    System.out.println("Deci: " + nc.display(nc.convertToDecimal()));
                 }
                 System.out.println("Choose another base to convert to: ");
                 int newBase = s.nextInt();
                 if (newBase > 64 || newBase < 0) {
                     System.out.println("All right that it, you want to be a smart ass, we restart if you want to get through this.");
                 } else
-                    System.out.println(base + ": " + nc.display(nc.convertEverything(base)));
+                    System.out.println(newBase + ": " + nc.display(nc.convertEverything(newBase)));
 
 
     }
