@@ -38,7 +38,8 @@ class ConverterRunner {
                 num = number;
             } else {
                 System.out.println("That's not valid!");
-
+            }
+        }
                 NumberConverter nc = new NumberConverter(num, base);
                 int[] digits = nc.getDigits();
                 System.out.println("\n\nDigit array: " + Arrays.toString(digits));
@@ -57,8 +58,8 @@ class ConverterRunner {
                 if (newBase > 64 || newBase < 0) {
                     System.out.println("All right that it, you want to be a smart ass, we restart if you want to get through this.");
                 } else
-                    System.out.println("Base " + base + ": " + nc.display(nc.convertEverything(base)));
-            }
-        }
+                    System.out.println(base + ": " + nc.display(nc.convertEverything(base)));
+
+
     }
 }

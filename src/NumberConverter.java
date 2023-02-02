@@ -2,16 +2,14 @@ public class NumberConverter {
     private int[] digits;
     private int base;
     private String originalNum;
-    private String forConversion;
+    private final String forConversion = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/";
     //char[] numsAndLettersForConv = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '+', '/'};
 
     public NumberConverter(String number, int base) {
-        //originalNum = number;
-        forConversion = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/";
-        digits = new int[number.length()];
-        for (int i = 0; i < number.length(); i++) {
-            String converting = String.valueOf(number.charAt(i));
-            int d = forConversion.indexOf(converting);
+        String numberAsString = number;
+        digits = new int[numberAsString.length()];
+        for (int i = 0; i < numberAsString.length(); i++) {
+            int d = forConversion.indexOf(String.valueOf(number.charAt(i)));
             digits[i] = d;
         }
         this.base = base;
@@ -20,9 +18,8 @@ public class NumberConverter {
     public String display(int[] x) {
         String o = "";
         for (int i = 0; i < x.length; i++) {
-            o = o + forConversion.charAt(x[i]);
+            o += forConversion.charAt(x[i]);
         }
-        o = o + "\n";
         return o;
     }
 
@@ -71,24 +68,25 @@ public class NumberConverter {
 
     public int[] convertEverything(int convertBase) {
         int pow = 0;
-        int[] any;
-        int num = Integer.parseInt(display(digits));
+        int[] x;
+        int num;
 
         if (base != convertBase) {
             if (base != 10) {
                 num = Integer.parseInt(display(convertToDecimal()));
             }
+            else num = Integer.parseInt(display(digits));
             while (Math.pow(convertBase, pow) <= num) {
                 pow++;
             }
-            any = new int[pow];
+            x = new int[pow];
             pow--;
-            for (int i = 0; i < any.length; i++) {
-                any[i] = num / (int) (Math.pow(convertBase,pow));
+            for (int i = 0; i < x.length; i++) {
+                x[i] = num / (int) (Math.pow(convertBase,pow));
                 num %= (int) (Math.pow(convertBase,pow));
                 pow--;
             }
-            return any;
+            return x;
         }
         return null;
     }
