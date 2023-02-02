@@ -31,12 +31,11 @@ class ConverterRunner {
             for (int j = 0; j < number.length(); j++) {
                 if (thing.indexOf(number.charAt(j)) > base || thing.indexOf(number.charAt(j)) < 0) {
                     temp = false;
+                    System.out.println("Try again");
                 }
             }
             if (temp) {
                 num = number;
-            } else {
-                System.out.println("Try again");
             }
         }
                 NumberConverter nc = new NumberConverter(num, base);
@@ -55,7 +54,6 @@ class ConverterRunner {
                     System.out.println("All right that it, you want to be a smart ass, we restart if you want to get through this.");
                 } else
                     System.out.println(newBase + ": " + nc.display(nc.convertEverything(newBase)));
-
 
     }
 }
