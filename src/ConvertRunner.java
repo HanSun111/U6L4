@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.Arrays;
 
 class ConverterRunner {
     public static void main(String[] args) {
@@ -18,13 +17,13 @@ class ConverterRunner {
                 base = Integer.parseInt(choice);
             } else {
                 System.out.println("Learn how to read dipstick");
-                System.out.print("Enter base; 0-64: ");
+                System.out.print("Enter base; 1-64: ");
                 i--;
             }
         }
 
         System.out.print("Enter your numbers that is bigger than 0: ");
-        String number = "";
+        String number;
         boolean temp = true;
         while(temp){
             temp = false;
