@@ -49,7 +49,8 @@ class ConverterRunner {
                 System.out.println("Choose another base to convert to: ");
                 int newBase = s.nextInt();
                 if (newBase > 64 || newBase < 0) {
-                    System.out.println("All right that it, you want to be a smart ass, we restart if you want to get through this.");
+                    System.out.println("All right that's it! you want to be a smart ass, no more loops \n We are doing this the old fashion way, press the green triangle to go again.");
+                    System.exit(0);
                 } else
                     System.out.println(newBase + ": " + nc.display(nc.convertEverything(newBase)));
 
