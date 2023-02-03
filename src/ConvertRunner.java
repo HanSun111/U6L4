@@ -24,17 +24,18 @@ class ConverterRunner {
         }
 
         System.out.print("Enter your numbers that is bigger than 0: ");
-        String number;
-
-        for (int i = 0; i < 1; i++) {
+        String number = "";
+        boolean temp = true;
+        while(temp){
+            temp = false;
             number = s.nextLine();
             for (int j = 0; j < number.length(); j++) {
-                if (thing.indexOf(number.charAt(j)) > base || thing.indexOf(number.charAt(j)) < 0) {
+                if (thing.indexOf(number.charAt(j)) < 0) {
+                    temp = true;
                     System.out.println("Try again");
-                    i --;
                 }
-                num = number;
             }
+            num = number;
         }
                 NumberConverter nc = new NumberConverter(num, base);
                 if (base != 2) {
