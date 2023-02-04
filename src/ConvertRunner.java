@@ -7,7 +7,7 @@ class ConverterRunner {
         String thing = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/";
 
         Scanner s = new Scanner(System.in);
-        System.out.println("Welcome to the Number Converter!");
+        System.out.println("Welcome to the Number Converter! No funny business");
         System.out.println("--------------------------------");
         System.out.println("Enter base; 1-64: ");
 
