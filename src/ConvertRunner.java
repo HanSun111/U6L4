@@ -31,8 +31,13 @@ class ConverterRunner {
             for (int j = 0; j < number.length(); j++) {
                 if (thing.indexOf(number.charAt(j)) < 0) {
                     temp = true;
-                    System.out.println("Try again");
+                    System.out.println("Try again: ");
                 }
+                if (thing.indexOf(number) >= base) {
+                    temp = true;
+                    System.out.println("Num does not compute with base input, Try again:");
+                }
+
             }
             num = number;
         }
